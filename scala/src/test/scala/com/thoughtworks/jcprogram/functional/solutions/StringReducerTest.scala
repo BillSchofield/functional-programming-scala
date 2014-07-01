@@ -1,28 +1,18 @@
 package com.thoughtworks.jcprogram.functional.solutions
 
+import org.hamcrest.CoreMatchers._
+import org.junit.Assert._
 import org.junit.Test
 import org.scalatest.junit.AssertionsForJUnit
 
 class StringReducerTest extends AssertionsForJUnit {
-  var numbers = Seq[Int]()
-  var computer = new SquareRootComputer()
-  
-  @Test def shouldTakeSquareRootOfAllNumbers {
-    numbers = Seq(9, 16)
-    numbers.foreach(println)
-    val result: String = computer.compute(numbers)
-    assertThat(result, both(containsString("3")).and(containsString("4")))
+  var reducer: StringReducer = new StringReducer
+
+  @Test def shouldReduceAllStrings {
+    assertThat(reducer.reduce(Set("1234", "2345")), is("12"))
   }
 
-  @Test def shouldSeparateNumbersWithCommaAndSpace {
-    numbers = Seq(9, 9)
-    val result: String = computer.compute(numbers)
-    assertThat(result, is("3, 3"))
-  }
-
-  @Test def shouldReportNothingWhenNumberIs4 {
-    numbers = Seq(4)
-    val result: String = computer.compute(numbers)
-    assertThat(result, is(""))
+  @Test def shouldReduceToNothingWhenStringIsNotLength4 {
+    assertThat(reducer.reduce(Set("12345")), is(""))
   }
 }
