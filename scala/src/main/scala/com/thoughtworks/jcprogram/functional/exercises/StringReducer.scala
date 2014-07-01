@@ -4,16 +4,8 @@ package com.thoughtworks.jcprogram.functional.exercises
 // Print the first letter of each of the string that have a length of 4.
 // For example, "BL"
 
-object StringReducer {
-
-  def reduceToFirstLetterOfLengthFourStrings(strings: Set[String]){
-
-  }
-
-  def main(args: Array[String]) {
-    val strings = Set("Bill", "Archer", "Lana")
-
-    val reducer = StringReducer
-    reducer.reduceToFirstLetterOfLengthFourStrings(strings)
+class StringReducer {
+  def reduce(strings: Set[String]) : String = {
+    strings.filter(string => string.length == 4).map(string => string.charAt(0)).mkString("")
   }
 }
